@@ -9,11 +9,10 @@
 
 # Table of Contents
 
-- [📊 What can Plotium do?](#-what-can-plotium-do)
+- [📊 What can PasteCMD do?](#-what-can-plotium-do)
 - [⬇️ Installation](#-installation)
+- [✨ Commands](#-commands)
 - [🪴 Example Snippet](#-example-snippets)
-- [📂 Directory Order](#-directory-order)
-- [🧩 Credits](#-credits)
  
 <br>
 
@@ -39,61 +38,60 @@ pip install --r requirements.txt
 ```
 - Run `main.py`
 
-
-
-<br>
-
-# 🪴 Example Snippet
-
-```python
-from Plotium.Group.GROUP_1 import electronegativity
-
-tp = electronegativity.plot()
-tp.show()
-```
-![Figure_1](https://github.com/rohankishore/Plotium/assets/109947257/fa70136f-c3a7-453d-a262-3bc75cb5984f)
-
-***For more examples, check the [examples](https://github.com/rohankishore/Plotium/tree/main/examples) folder.***
+### 2. Via EXE
+- Download the EXE from the latest [Release](https://github.com/rohankishore/PasteCMD/releases)
+- Unzip the ZIP
+- Run the EXE
 
 <br>
 
-# 📂 Directory Order
-```
-Plotium
-├── Type
-│   ├── Actinoids
-│   ├── AlkaliMetals
-│   ├── AlkalineEarthMetals
-│   ├── Halogens
-│   ├── Lanthanoids
-│   ├── Metalloids
-│   ├── NobleGases
-│   └── NonMetals
-├── Blocks
-│   ├── S_BLOCK
-│   ├── D_BLOCK
-│   ├── F_BLOCK
-│   └── P_BLOCK
-├── Group
-│   ├── GROUP_1
-│   ├── GROUP_2
-│   ├── ..
-│   ├── ..
-│   ├── ..
-│   └── GROUP_18
-└── Period
-    ├── PERIOD_1
-    ├── PERIOD_2
-    ├── ..
-    ├── ..
-    └── PERIOD_7
+# ✨ Commands
+| Command                        | Use                             | Example Command
+|----------------------------------------|-------------------------|------------------------
+| `text`  | Uploads the text written after the command | `text hello, world!` |
+| `file`  | Uploads the contents of the file mentioned after the command | `file main.py` |
+| `help` | Shows you all the available commands | `help` |
+| `quit` | Exits the CLI | `quit` |
 
+
+# 🪴 Example Snippets
+
+```
+Welcome to PasteCMD. 
+ ____           _        ____ __  __ ____  
+|  _ \ __ _ ___| |_ ___ / ___|  \/  |  _ \ 
+| |_) / _` / __| __/ _ \ |   | |\/| | | | |
+|  __/ (_| \__ \ ||  __/ |___| |  | | |_| |
+|_|   \__,_|___/\__\___|\____|_|  |_|____/ 
+                                           
+Type 'help' to view all commands
+
+>> text Star PasteCMD if you like this project :)
+https://pastebin.com/WriZHqJR
+Your Pastebin link has been copied to the clipboard!
+```
+
+```
+Welcome to PasteCMD. 
+ ____           _        ____ __  __ ____  
+|  _ \ __ _ ___| |_ ___ / ___|  \/  |  _ \ 
+| |_) / _` / __| __/ _ \ |   | |\/| | | | |
+|  __/ (_| \__ \ ||  __/ |___| |  | | |_| |
+|_|   \__,_|___/\__\___|\____|_|  |_|____/ 
+                                           
+Type 'help' to view all commands
+
+>> file main.py
+https://pastebin.com/akLQVipM
+Your Pastebin link has been copied to the clipboard!
 ```
 
 <br>
 
-# 🧩 Credits
-
-The infos used in this project are from:
-- [Periodic Trends - Chemistry Libre](https://chem.libretexts.org/Bookshelves/Inorganic_Chemistry/Supplemental_Modules_and_Websites_(Inorganic_Chemistry)/Descriptive_Chemistry/Periodic_Trends_of_Elemental_Properties/Periodic_Trends)
-- [Britannica](https://www.britannica.com/)
+```bash
+                                          ____           _        ____ __  __ ____  
+                                         |  _ \ __ _ ___| |_ ___ / ___|  \/  |  _ \ 
+                                         | |_) / _` / __| __/ _ \ |   | |\/| | | | |
+                                         |  __/ (_| \__ \ ||  __/ |___| |  | | |_| |
+                                         |_|   \__,_|___/\__\___|\____|_|  |_|____/ 
+```
