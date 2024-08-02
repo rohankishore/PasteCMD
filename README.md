@@ -3,6 +3,9 @@
 # PasteCMD 📋
 ✨ CLI app for Pastebin. ✨ 
 
+![image](https://github.com/user-attachments/assets/6623202b-0b8e-4ad3-9485-773b496b3121)
+
+
 </div>
 
 <br>
