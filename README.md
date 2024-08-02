@@ -51,10 +51,11 @@ pip install --r requirements.txt
 # ✨ Commands
 | Command                        | Use                             | Example Command
 |----------------------------------------|-------------------------|------------------------
-| `text`  | Uploads the text written after the command | `text hello, world!` |
-| `file`  | Uploads the contents of the file mentioned after the command | `file main.py` |
-| `help` | Shows you all the available commands | `help` |
-| `quit` | Exits the CLI | `quit` |
+| `text`  | Uploads the text written after the command | `>> text hello, world!` |
+| `file`  | Uploads the contents of the file mentioned after the command | `>> file main.py` |
+| `add_api_key`  | Add/Update your API Key | `>> add_api_key` |
+| `help` | Shows you all the available commands | `>> help` |
+| `quit` | Exits the CLI | `>> quit` |
 
 
 # 🪴 Example Snippets
