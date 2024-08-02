@@ -1,4 +1,6 @@
 <div align="center">
+ 
+![icon](https://github.com/user-attachments/assets/7b5e0d0f-2f08-4d4e-9ea7-1c515993e53e)
 
 # PasteCMD 📋
 ✨ CLI app for Pastebin. ✨ 
