@@ -84,6 +84,10 @@ class YTWrap(cmd.Cmd):
         """Same purpose as quit function"""
         return True
 
+    def do_EOF(self, line):
+        """Quit with EOF (i,e Ctrl+D)"""
+        return True
+
     def postcmd(self, stop, line):
         print()  # Add an empty line for better readability
         return stop
