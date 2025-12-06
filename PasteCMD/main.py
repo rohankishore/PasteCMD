@@ -39,7 +39,7 @@ class YTWrap(cmd.Cmd):
         try:
             if text_pb != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": text_pb}
-                response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
+                response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
                 self.respond(response)
             else:
                 print("WARNING: Cowardly refusing to upload blank text") # that would be spam anyways
@@ -53,7 +53,7 @@ class YTWrap(cmd.Cmd):
                 content = file.read()
             if content != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content}
-                response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
+                response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
                 self.respond(response)
             else:
                 print("WARNING: Cowardly refusing to upload a blank file")
