@@ -53,7 +53,7 @@ class YTWrap(cmd.Cmd):
 
     def do_file(self, file_pb):
         try:
-            with open(file_pb, "r+") as file:
+            with open(file_pb, "r") as file:
                 content = file.read()
             if content != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content}
