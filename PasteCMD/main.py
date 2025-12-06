@@ -3,10 +3,11 @@ import cmd
 import pyperclip
 import requests
 
-
-with open("api_key.txt", "r") as api_file:
-    API_KEY = api_file.read()
-
+try:
+    with open("api_key.txt", "r") as api_file:
+        API_KEY = api_file.read()
+except FileNotFoundError:
+    print("ERROR: Failed to get API key. Please write API key to file named `api_key.txt`, and then run `add_api_key` in this program's interactive shell to load it.")
 
 art = """
  ____           _        ____ __  __ ____  
