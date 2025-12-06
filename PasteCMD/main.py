@@ -54,7 +54,7 @@ class YTWrap(cmd.Cmd):
             if content != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content}
                 response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
-                respond(response)
+                self.respond(response)
             else:
                 print("WARNING: Cowardly refusing to upload a blank file")
 
