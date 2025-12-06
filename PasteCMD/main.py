@@ -4,8 +4,8 @@ import pyperclip
 import requests
 import os
 
-script_path = os.path.abspath(__file__)
-keytxt_path = os.path.join(script_path, "api_key.txt")
+script_dir = os.path.dirname(os.path.abspath(__file__))
+keytxt_path = os.path.join(script_dir, "api_key.txt")
 try:
     with open(keytxt_path, "r") as api_file:
         API_KEY = api_file.read()
