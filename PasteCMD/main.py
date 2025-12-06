@@ -7,7 +7,7 @@ try:
     with open("api_key.txt", "r") as api_file:
         API_KEY = api_file.read()
 except FileNotFoundError:
-    print("ERROR: Failed to get API key. Please write API key to file named `api_key.txt`, and then run `add_api_key` in this program's interactive shell to load it.")
+    print("ERROR: Failed to get API key. Please get and API key and then run the add_api_key command with the key as an argument in this program's interactive shell.")
 
 art = """
  ____           _        ____ __  __ ____  
@@ -27,8 +27,10 @@ class YTWrap(cmd.Cmd):
         super().__init__()
 
     def do_add_api_key(self, apiKey):
+        global API_KEY
         with open("api_key.txt", "w") as api_file:
             api_file.write(apiKey)
+        API_KEY = apiKey
 
     def do_text(self, text_pb):
         try:
