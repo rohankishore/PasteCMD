@@ -8,7 +8,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 keytxt_path = os.path.join(script_dir, "api_key.txt")
 try:
     with open(keytxt_path, "r") as api_file:
-        API_KEY = api_file.read()
+        API_KEY = api_file.read().strip()
 except FileNotFoundError:
     print("ERROR: Failed to get API key. Please get an API key and then run the add_api_key command with the key as an argument in this program's interactive shell.")
 
@@ -32,8 +32,8 @@ class YTWrap(cmd.Cmd):
     def do_add_api_key(self, apiKey):
         global API_KEY
         with open(keytxt_path, "w") as api_file:
-            api_file.write(apiKey)
-        API_KEY = apiKey
+            api_file.write(apiKey.strip())
+        API_KEY = apiKey.strip()
 
     def do_text(self, text_pb):
         try:
