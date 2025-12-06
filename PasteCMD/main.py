@@ -69,9 +69,9 @@ class YTWrap(cmd.Cmd):
         return f"{hours:02}:{minutes:02}:{seconds:02}"
 
     def respond(self, response):
-        print(response)
+        # print(response)
         if response.startswith("Bad API request"):
-            print("ERROR: Pastebin upload NOT SUCCESSFUL")
+            print(f"ERROR: Pastebin upload NOT SUCCESSFUL: {response}")
         else:
             pyperclip.copy(response)
             print("Your Pastebin link has been copied to the clipboard!")
