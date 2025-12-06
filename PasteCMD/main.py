@@ -54,9 +54,9 @@ class YTWrap(cmd.Cmd):
             if content != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content}
                 response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
-                text = "Your Pastebin link has been copied to the clipboard!"
-                pyperclip.copy(response)
-                print(text)
+                respond(response)
+            else:
+                print("WARNING: Cowardly refusing to upload a blank file")
 
         except Exception as e:
             print(f"An error occurred: {e}")
