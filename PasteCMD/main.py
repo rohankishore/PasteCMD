@@ -40,13 +40,9 @@ class YTWrap(cmd.Cmd):
             if text_pb != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": text_pb}
                 response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
-                text = "Your Pastebin link has been copied to the clipboard!"
-                pyperclip.copy(response)
-                print(response)
-                if response == "Bad API request, invalid api_dev_key":
-                    pass
-                else:
-                    print(text)
+                self.respond(response)
+            else:
+                print("WARNING: Cowardly refusing to upload blank text") # that would be spam anyways
 
         except Exception as e:
             print(f"An error occurred: {e}")
@@ -71,6 +67,14 @@ class YTWrap(cmd.Cmd):
         minutes = int((seconds % 3600) // 60)
         seconds = int(seconds % 60)
         return f"{hours:02}:{minutes:02}:{seconds:02}"
+
+    def respond(self, response):
+        print(response)
+        if response.startswith("Bad API request"):
+            print("ERROR: Pastebin upload NOT SUCCESSFUL")
+        else:
+            pyperclip.copy(response)
+            print("Your Pastebin link has been copied to the clipboard!")
 
     def do_quit(self, line):
         """Exit the CLI."""
