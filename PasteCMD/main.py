@@ -9,7 +9,7 @@ try:
 except FileNotFoundError:
     print("ERROR: Failed to get API key. Please get and API key and then run the add_api_key command with the key as an argument in this program's interactive shell.")
 
-art = """
+art = r"""
  ____           _        ____ __  __ ____  
 |  _ \ __ _ ___| |_ ___ / ___|  \/  |  _ \ 
 | |_) / _` / __| __/ _ \ |   | |\/| | | | |
