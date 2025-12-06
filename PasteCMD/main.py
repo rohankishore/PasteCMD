@@ -10,7 +10,7 @@ try:
     with open(keytxt_path, "r") as api_file:
         API_KEY = api_file.read()
 except FileNotFoundError:
-    print("ERROR: Failed to get API key. Please get and API key and then run the add_api_key command with the key as an argument in this program's interactive shell.")
+    print("ERROR: Failed to get API key. Please get an API key and then run the add_api_key command with the key as an argument in this program's interactive shell.")
 
 art = r"""
  ____           _        ____ __  __ ____  
