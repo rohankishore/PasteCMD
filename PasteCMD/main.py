@@ -73,6 +73,10 @@ class YTWrap(cmd.Cmd):
         """Exit the CLI."""
         return True
 
+    def do_exit(self, line):
+        """Same purpose as quit function"""
+        return True
+
     def postcmd(self, stop, line):
         print()  # Add an empty line for better readability
         return stop
