@@ -2,13 +2,17 @@ import cmd
 
 import pyperclip
 import requests
+import os
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+keytxt_path = os.path.join(script_dir, "api_key.txt")
+try:
+    with open(keytxt_path, "r") as api_file:
+        API_KEY = api_file.read().strip()
+except FileNotFoundError:
+    print("ERROR: Failed to get API key. Please get an API key and then run the add_api_key command with the key as an argument in this program's interactive shell.")
 
-with open("api_key.txt", "r") as api_file:
-    API_KEY = api_file.read()
-
-
-art = """
+art = r"""
  ____           _        ____ __  __ ____  
 |  _ \ __ _ ___| |_ ___ / ___|  \/  |  _ \ 
 | |_) / _` / __| __/ _ \ |   | |\/| | | | |
@@ -26,35 +30,33 @@ class YTWrap(cmd.Cmd):
         super().__init__()
 
     def do_add_api_key(self, apiKey):
-        with open("api_key.txt", "w") as api_file:
-            api_file.write(apiKey)
+        global API_KEY
+        with open(keytxt_path, "w") as api_file:
+            api_file.write(apiKey.strip())
+        API_KEY = apiKey.strip()
 
     def do_text(self, text_pb):
         try:
             if text_pb != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": text_pb}
-                response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
-                text = "Your Pastebin link has been copied to the clipboard!"
-                pyperclip.copy(response)
-                print(response)
-                if response == "Bad API request, invalid api_dev_key":
-                    pass
-                else:
-                    print(text)
+                response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
+                self.respond(response)
+            else:
+                print("WARNING: Cowardly refusing to upload blank text") # that would be spam anyways
 
         except Exception as e:
             print(f"An error occurred: {e}")
 
     def do_file(self, file_pb):
         try:
-            with open(file_pb, "r+") as file:
+            with open(file_pb, "r") as file:
                 content = file.read()
             if content != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content}
-                response = (requests.post("https://pastebin.com/api/api_post.php", data=data)).text
-                text = "Your Pastebin link has been copied to the clipboard!"
-                pyperclip.copy(response)
-                print(text)
+                response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
+                self.respond(response)
+            else:
+                print("WARNING: Cowardly refusing to upload a blank file")
 
         except Exception as e:
             print(f"An error occurred: {e}")
@@ -66,8 +68,24 @@ class YTWrap(cmd.Cmd):
         seconds = int(seconds % 60)
         return f"{hours:02}:{minutes:02}:{seconds:02}"
 
+    def respond(self, response):
+        # print(response)
+        if response.startswith("Bad API request"):
+            print(f"ERROR: Pastebin upload NOT SUCCESSFUL: {response}")
+        else:
+            pyperclip.copy(response)
+            print("Your Pastebin link has been copied to the clipboard!")
+
     def do_quit(self, line):
         """Exit the CLI."""
+        return True
+
+    def do_exit(self, line):
+        """Same purpose as quit function"""
+        return True
+
+    def do_EOF(self, line):
+        """Quit with EOF (i,e Ctrl+D)"""
         return True
 
     def postcmd(self, stop, line):
