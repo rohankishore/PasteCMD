@@ -3,9 +3,20 @@ import cmd
 import pyperclip
 import requests
 import os
+import platform
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-keytxt_path = os.path.join(script_dir, "api_key.txt")
+if platform.system() == "Linux":
+    config_dir = os.path.join(os.path.expanduser("~"), ".config", "PasteCMD")
+elif platform.system() == "Windows":
+    localappdata = os.environ.get("LOCALAPPDATA")
+    config_dir = os.path.join(localappdata, "PasteCMD")
+elif platform.system() == "Darwin":
+    applicationsupport = os.path.join(os.path.expanduser("~"), "Library", "Application Support")
+    config_dir = os.path.join(applicationsupport, "PasteCMD")
+else:
+    config_dir = os.path.dirname(os.path.abspath(__file__))
+os.makedirs(config_dir, exist_ok=True)
+keytxt_path = os.path.join(config_dir, "api_key.txt")
 try:
     with open(keytxt_path, "r") as api_file:
         API_KEY = api_file.read().strip()
