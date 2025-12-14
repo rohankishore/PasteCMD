@@ -110,7 +110,6 @@ class YTWrap(cmd.Cmd):
         print()  # Add an empty line for better readability
         return stop
 
-
 if __name__ == '__main__':
     try:
         YTWrap().cmdloop()
