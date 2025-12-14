@@ -112,4 +112,8 @@ class YTWrap(cmd.Cmd):
 
 
 if __name__ == '__main__':
-    YTWrap().cmdloop()
+    try:
+        YTWrap().cmdloop()
+    except KeyboardInterrupt:
+        print("Restarting shell...")
+        YTWrap().cmdloop()
