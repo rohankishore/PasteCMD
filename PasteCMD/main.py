@@ -22,6 +22,7 @@ try:
         API_KEY = api_file.read().strip()
 except FileNotFoundError:
     print("ERROR: Failed to get API key. Please get an API key and then run the add_api_key command with the key as an argument in this program's interactive shell.")
+    API_KEY = None
 
 art = r"""
  ____           _        ____ __  __ ____  
