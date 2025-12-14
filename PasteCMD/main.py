@@ -64,6 +64,9 @@ class YTWrap(cmd.Cmd):
 
     def do_file(self, file_pb):
         try:
+            if not API_KEY:
+                print("ERROR: No API key found. Please add an API key using the add_api_key command.")
+                return
             with open(file_pb, "r") as file:
                 content = file.read()
             if content != "":
