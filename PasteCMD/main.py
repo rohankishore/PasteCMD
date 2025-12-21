@@ -75,7 +75,7 @@ class YTWrap(cmd.Cmd):
             with open(file_pb, "r") as file:
                 content = file.read()
             if content != "":
-                data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content}
+                data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content, "api_paste_name": os.path.basename(file_pb)}
                 response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
                 self.respond(response)
             else:
