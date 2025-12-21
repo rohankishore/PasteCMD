@@ -49,8 +49,8 @@ class YTWrap(cmd.Cmd):
             api_file.write(apiKey.strip())
         API_KEY = apiKey.strip()
 
-        """Upload provided text to Pastebin. <paste_name> is optional. Usage: text <text> [paste_name]"""
     def do_text(self, line):
+        """Upload provided text to Pastebin. <paste_name> is optional. Usage: text "<text>" [paste_name]"""
         try:
             if not API_KEY:
                 print("ERROR: No API key found. Please add an API key using the add_api_key command.")
