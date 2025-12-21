@@ -62,6 +62,11 @@ class YTWrap(cmd.Cmd):
         except Exception as e:
             print(f"An error occurred: {e}")
 
+    def do_clipboard(self, line):
+        clipboard_content = pyperclip.paste()
+        print("Uploading clipboard content:" + '\n' + clipboard_content)
+        self.do_text(clipboard_content)
+
     def do_file(self, file_pb):
         try:
             if not API_KEY:
