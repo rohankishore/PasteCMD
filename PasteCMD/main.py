@@ -4,6 +4,7 @@ import pyperclip
 import requests
 import os
 import platform
+import shlex
 
 if platform.system() == "Linux":
     config_dir = os.path.join(os.path.expanduser("~"), ".config", "PasteCMD")
@@ -48,16 +49,23 @@ class YTWrap(cmd.Cmd):
             api_file.write(apiKey.strip())
         API_KEY = apiKey.strip()
 
-    def do_text(self, text_pb, *args):
         """Upload provided text to Pastebin. <paste_name> is optional. Usage: text <text> [paste_name]"""
+    def do_text(self, line):
         try:
             if not API_KEY:
                 print("ERROR: No API key found. Please add an API key using the add_api_key command.")
                 return
-            if not len(args) == 0:
-                paste_name = args[0]
-            else:
+            
+            parts = shlex.split(line)
+            if len(parts) == 0:
+                print("WARNING: Cowardly refusing to upload blank text") # that would be spam anyways x2
+            if len(parts) == 1:
+                text_pb = parts[0]
                 paste_name = "Untitled"
+            else:
+                text_pb = parts[0]
+                paste_name = parts[1]
+            
             if text_pb != "":
                 data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": text_pb, "api_paste_name": paste_name}
                 response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
