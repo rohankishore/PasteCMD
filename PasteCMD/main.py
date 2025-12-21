@@ -68,8 +68,12 @@ class YTWrap(cmd.Cmd):
 
     def do_clipboard(self, line):
         clipboard_content = pyperclip.paste()
+        if line.strip() != "":
+            paste_name = line.strip()
+        else:
+            paste_name = "Untitled"
         print("Uploading clipboard content:" + '\n' + clipboard_content)
-        self.do_text(clipboard_content)
+        self.do_text(clipboard_content, paste_name)
 
     def do_file(self, file_pb):
         try:
