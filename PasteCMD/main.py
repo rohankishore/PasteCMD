@@ -47,13 +47,17 @@ class YTWrap(cmd.Cmd):
             api_file.write(apiKey.strip())
         API_KEY = apiKey.strip()
 
-    def do_text(self, text_pb):
+    def do_text(self, text_pb, *args):
         try:
             if not API_KEY:
                 print("ERROR: No API key found. Please add an API key using the add_api_key command.")
                 return
+            if not args.len() == 0:
+                paste_name = args[0]
+            else:
+                paste_name = "Untitled"
             if text_pb != "":
-                data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": text_pb}
+                data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": text_pb, "api_paste_name": paste_name}
                 response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
                 self.respond(response)
             else:
