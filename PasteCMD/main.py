@@ -42,12 +42,14 @@ class YTWrap(cmd.Cmd):
         super().__init__()
 
     def do_add_api_key(self, apiKey):
+        """Add your Pastebin API key for uploading pastes. Usage: add_api_key <your_api_key>"""
         global API_KEY
         with open(keytxt_path, "w") as api_file:
             api_file.write(apiKey.strip())
         API_KEY = apiKey.strip()
 
     def do_text(self, text_pb, *args):
+        """Upload provided text to Pastebin. <paste_name> is optional. Usage: text <text> [paste_name]"""
         try:
             if not API_KEY:
                 print("ERROR: No API key found. Please add an API key using the add_api_key command.")
@@ -67,6 +69,7 @@ class YTWrap(cmd.Cmd):
             print(f"An error occurred: {e}")
 
     def do_clipboard(self, line):
+        """Upload clipboard content to Pastebin. <paste_name> is optional. Usage: clipboard [paste_name]"""
         clipboard_content = pyperclip.paste()
         if line.strip() != "":
             paste_name = line.strip()
@@ -76,6 +79,7 @@ class YTWrap(cmd.Cmd):
         self.do_text(clipboard_content, paste_name)
 
     def do_file(self, file_pb):
+        """Upload content of a file to Pastebin. Usage: file <file_path>"""
         try:
             if not API_KEY:
                 print("ERROR: No API key found. Please add an API key using the add_api_key command.")
