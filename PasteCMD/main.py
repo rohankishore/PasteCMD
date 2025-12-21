@@ -54,7 +54,7 @@ class YTWrap(cmd.Cmd):
             if not API_KEY:
                 print("ERROR: No API key found. Please add an API key using the add_api_key command.")
                 return
-            if not args.len() == 0:
+            if not len(args) == 0:
                 paste_name = args[0]
             else:
                 paste_name = "Untitled"
