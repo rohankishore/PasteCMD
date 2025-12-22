@@ -4,6 +4,7 @@ import pyperclip
 import requests
 import os
 import platform
+import shlex
 
 if platform.system() == "Linux":
     config_dir = os.path.join(os.path.expanduser("~"), ".config", "PasteCMD")
@@ -42,18 +43,31 @@ class YTWrap(cmd.Cmd):
         super().__init__()
 
     def do_add_api_key(self, apiKey):
+        """Add your Pastebin API key for uploading pastes. Usage: add_api_key <your_api_key>"""
         global API_KEY
         with open(keytxt_path, "w") as api_file:
             api_file.write(apiKey.strip())
         API_KEY = apiKey.strip()
 
-    def do_text(self, text_pb):
+    def do_text(self, line):
+        """Upload provided text to Pastebin. <paste_name> is optional. Usage: text "<text>" [paste_name]"""
         try:
             if not API_KEY:
                 print("ERROR: No API key found. Please add an API key using the add_api_key command.")
                 return
+            
+            parts = shlex.split(line)
+            if len(parts) == 0:
+                print("WARNING: Cowardly refusing to upload blank text") # that would be spam anyways x2
+            if len(parts) == 1:
+                text_pb = parts[0]
+                paste_name = "Untitled"
+            else:
+                text_pb = parts[0]
+                paste_name = parts[1]
+            
             if text_pb != "":
-                data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": text_pb}
+                data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": text_pb, "api_paste_name": paste_name}
                 response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
                 self.respond(response)
             else:
@@ -62,7 +76,18 @@ class YTWrap(cmd.Cmd):
         except Exception as e:
             print(f"An error occurred: {e}")
 
+    def do_clipboard(self, line):
+        """Upload clipboard content to Pastebin. <paste_name> is optional. Usage: clipboard [paste_name]"""
+        clipboard_content = pyperclip.paste()
+        if line.strip() != "":
+            paste_name = line.strip()
+        else:
+            paste_name = "Untitled"
+        print("Uploading clipboard content:" + '\n' + clipboard_content)
+        self.do_text(clipboard_content, paste_name)
+
     def do_file(self, file_pb):
+        """Upload content of a file to Pastebin. Usage: file <file_path>"""
         try:
             if not API_KEY:
                 print("ERROR: No API key found. Please add an API key using the add_api_key command.")
@@ -70,7 +95,7 @@ class YTWrap(cmd.Cmd):
             with open(file_pb, "r") as file:
                 content = file.read()
             if content != "":
-                data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content}
+                data = {"api_dev_key": API_KEY, "api_option": "paste", "api_paste_code": content, "api_paste_name": os.path.basename(file_pb)}
                 response = requests.post("https://pastebin.com/api/api_post.php", data=data).text
                 self.respond(response)
             else:
