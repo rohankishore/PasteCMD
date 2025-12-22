@@ -55,6 +55,7 @@ pip install --r requirements.txt
 | Command                        | Use                             | Example Command
 |----------------------------------------|-------------------------|------------------------
 | `text`  | Uploads the text written after the command | `>> text hello, world!` |
+| `clipboard`  | Uploads the current clipboard content | `>> clipboard` |
 | `file`  | Uploads the contents of the file mentioned after the command | `>> file main.py` |
 | `add_api_key`  | Add/Update your API Key | `>> add_api_key 0123456789abcdef0123456789abcdef` |
 | `help` | Shows you all the available commands | `>> help` |
