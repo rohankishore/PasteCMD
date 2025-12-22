@@ -25,6 +25,7 @@
 PasteCMD is a CLI app for [Pastebin](https://pastebin.com/) service ***PasteCMD can do***:
 1. Upload text sentences
 2. Upload File content
+3. Upload clipboard content
 
 <br>
 
