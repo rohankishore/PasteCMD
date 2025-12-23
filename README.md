@@ -25,6 +25,7 @@
 PasteCMD is a CLI app for [Pastebin](https://pastebin.com/) service ***PasteCMD can do***:
 1. Upload text sentences
 2. Upload File content
+3. Upload clipboard content
 
 <br>
 
@@ -53,8 +54,9 @@ pip install --r requirements.txt
 # ✨ Commands
 | Command                        | Use                             | Example Command
 |----------------------------------------|-------------------------|------------------------
-| `text`  | Uploads the text written after the command | `>> text hello, world!` |
-| `file`  | Uploads the contents of the file mentioned after the command | `>> file main.py` |
+| `text`  | Uploads the text written after the command | `>> text "hello, world!" [name (optional)]` |
+| `clipboard`  | Uploads the current clipboard content | `>> clipboard [name (optional)]` |
+| `file`  | Uploads the file mentioned after the command | `>> file main.py` |
 | `add_api_key`  | Add/Update your API Key | `>> add_api_key 0123456789abcdef0123456789abcdef` |
 | `help` | Shows you all the available commands | `>> help` |
 | `quit` | Exits the CLI | `>> quit` |
