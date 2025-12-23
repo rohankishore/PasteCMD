@@ -74,7 +74,7 @@ Welcome to PasteCMD.
                                            
 Type 'help' to view all commands
 
->> text Star PasteCMD if you like this project :)
+>> text "Star PasteCMD if you like this project :)"
 https://pastebin.com/WriZHqJR
 Your Pastebin link has been copied to the clipboard!
 ```
