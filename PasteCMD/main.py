@@ -24,7 +24,7 @@ try:
 except FileNotFoundError:
     print("ERROR: Failed to get API key. Please get an API key and then run the add_api_key command with the key as an argument in this program's interactive shell.")
     API_KEY = None
-version = [1, 0, 0]
+version = [1, 1, 0]
 
 art = r"""
  ____           _        ____ __  __ ____  
